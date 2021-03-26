@@ -64,13 +64,33 @@ public class UsrArticleController {
 	@ResponseBody
 	public Map<String, Object> doDelete(int id) {
 		
-		articles.remove(id-1);
+		boolean deleteArticleRs = deleteArticle(id);
 		
 		Map<String, Object> rs = new HashMap<>();
-		rs.put("resultCode", "S-1");
- 		rs.put("msg", "성공하였습니다.");
+		
+		if ( deleteArticleRs ) {
+			rs.put("resultCode", "S-1");
+			rs.put("msg", "성공하였습니다.");
+		} 
+		else {
+			rs.put("resultCode", "F-1");
+			rs.put("msg", "해달 게시물은 존재하지 습니다.");
+			
+		}
+
 		rs.put("id", id);
 		
 		return rs;
+	}
+	
+	// 게시물 삭제 메서드   	
+	private boolean deleteArticle(int id) {
+		for ( Article article : articles ) {
+			if ( article.getId() == id) {
+				articles.remove(article);
+				return true;
+			}
+		}
+		return false;
 	}
 }
