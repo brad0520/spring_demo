@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.Article;
 
-//http:localhost:8024/usr/article/detail
+//http:localhost:8024/usr/article/detail=1
 //http:localhost:8024/usr/article/list
 
 @Controller
