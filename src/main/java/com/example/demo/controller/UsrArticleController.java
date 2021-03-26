@@ -13,6 +13,7 @@ import com.example.demo.dto.Article;
 //http:localhost:8024/usr/article/detail
 //http:localhost:8024/usr/article/list
 //http://localhost:8024/usr/article/doAdd?regDate=2021-03-26 22:47:32&title=제목3&body=내용3
+//http://localhost:8024/usr/article/doDelete?id=1
 
 @Controller
 public class UsrArticleController {
@@ -54,6 +55,21 @@ public class UsrArticleController {
 		rs.put("resultCode", "S-1");
  		rs.put("msg", "성공하였습니다.");
 		rs.put("id", articlesLastId);
+		
+		return rs;
+	}
+	
+	// 게시물 삭제  
+	@RequestMapping("/usr/article/doDelete")
+	@ResponseBody
+	public Map<String, Object> doDelete(int id) {
+		
+		articles.remove(id-1);
+		
+		Map<String, Object> rs = new HashMap<>();
+		rs.put("resultCode", "S-1");
+ 		rs.put("msg", "성공하였습니다.");
+		rs.put("id", id);
 		
 		return rs;
 	}
