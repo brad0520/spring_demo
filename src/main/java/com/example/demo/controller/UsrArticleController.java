@@ -29,8 +29,8 @@ public class UsrArticleController {
 		articles = new ArrayList<>();
 
 		// 게시물 2개 생성
-		articles.add(new Article(++articlesLastId, "2021-03-26 21:31:45", "제목1", "내용1"));
-		articles.add(new Article(++articlesLastId, "2021-03-26 21:32:52", "제목2", "내용2"));
+		articles.add(new Article(++articlesLastId, Util.getNowDateStr(), Util.getNowDateStr(), "제목1", "내용1"));
+		articles.add(new Article(++articlesLastId, Util.getNowDateStr(), Util.getNowDateStr(), "제목2", "내용2"));
 	}
 
 	// 게시물 상세보기
@@ -56,8 +56,10 @@ public class UsrArticleController {
 	@ResponseBody
 	public Map<String, Object> doAdd(String title, String body) {
 		String regDate = Util.getNowDateStr();
+		String updateDate = regDate;
 		
 		articles.add(new Article(++articlesLastId, regDate, title, body));
+		articles.add(new Article(++articlesLastId, regDate, updateDate, title, body));
 
 		Map<String, Object> rs = new HashMap<>();
 		rs.put("resultCode", "S-1");
@@ -123,6 +125,7 @@ public class UsrArticleController {
 			return rs;
 		} 
 		else {
+			selectedArticle.setUpdateDate(Util.getNowDateStr());
 			selectedArticle.setTitle(title);
 			selectedArticle.setBody(body);
 			
