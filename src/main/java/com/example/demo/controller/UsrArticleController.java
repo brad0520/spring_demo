@@ -58,7 +58,6 @@ public class UsrArticleController {
 		String regDate = Util.getNowDateStr();
 		String updateDate = regDate;
 		
-		articles.add(new Article(++articlesLastId, regDate, title, body));
 		articles.add(new Article(++articlesLastId, regDate, updateDate, title, body));
 
 		Map<String, Object> rs = new HashMap<>();
