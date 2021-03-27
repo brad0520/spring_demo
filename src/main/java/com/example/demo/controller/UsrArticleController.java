@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.Article;
+import com.example.demo.util.Util;
 
 //http:localhost:8024/usr/article/detail
 //http:localhost:8024/usr/article/list
@@ -52,8 +54,9 @@ public class UsrArticleController {
 	// 게시물 추가
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
-	public Map<String, Object> doAdd(String regDate, String title, String body) {
-
+	public Map<String, Object> doAdd(String title, String body) {
+		String regDate = Util.getNowDateStr();
+		
 		articles.add(new Article(++articlesLastId, regDate, title, body));
 
 		Map<String, Object> rs = new HashMap<>();
